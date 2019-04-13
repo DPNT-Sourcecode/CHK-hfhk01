@@ -32,7 +32,7 @@ def checkout(skus):
     80
     >>> checkout("FFFFFF")
     40
-    >>> checkout("UUU")
+    >>> checkout("UUUU")
     120
     """
     skuCounter = Counter(skus)
@@ -129,7 +129,7 @@ def checkout(skus):
 def calculate_get_one_free_deal(item_price, item_count, free_point):
     free = item_count // free_point
     count_minus_free = item_count - free
-    price = count_minus_free * 10
+    price = count_minus_free * item_price
     return int(price)
 
 def calculate_double_money_off_deal(item_price, item_count, 
@@ -164,12 +164,3 @@ def calculate_single_money_off_deal(item_price, item_count, deal_count, deal_pri
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-
-
-
-
-
-
-
-
-
