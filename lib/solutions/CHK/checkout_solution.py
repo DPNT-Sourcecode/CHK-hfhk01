@@ -11,13 +11,16 @@ def checkout(skus):
         if c not in "ABCDEFGHIJKLMNOPQRSTUVWXYZ": return -1
 
     # Check the Zs
-    price += skuCounter["Z"] * 50
+    # New offer
+    price += skuCounter["Z"] * 21
 
     # Check the Ys
-    price += skuCounter["Y"] * 10
+    # New offer
+    price += skuCounter["Y"] * 20
 
     # Check the Xs
-    price += skuCounter["X"] * 90
+    # New offer
+    price += skuCounter["X"] * 17
 
     # Check the Ws
     price += skuCounter["W"] * 20
@@ -29,9 +32,11 @@ def checkout(skus):
     price += calculate_get_one_free_deal(40, skuCounter["U"], 4)
 
     # Check the Ts
+    # New offer
     price += skuCounter["T"] * 20
 
     # Check the Ss
+    # New offer
     price += skuCounter["S"] * 30
 
     # Check the Rs
@@ -185,3 +190,4 @@ def test_checkout(skus):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
