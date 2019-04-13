@@ -45,6 +45,9 @@ def checkout(skus):
             price += skuCounter[skuKey]*20
         elif skuKey == "B":
             b_count = skuCounter[skuKey] - free_bs
+            price(b_count)
+            if b_count <= 0:
+                break
             remainder = b_count % 2
             price += 30 * remainder
             price += 45 * ((b_count - remainder) / 2)
@@ -67,6 +70,7 @@ def checkout(skus):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
