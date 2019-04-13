@@ -5,7 +5,7 @@ from collections import Counter
 def checkout(skus):
     skuCounter = Counter(skus)
     price = 0
-    free_bs = 0
+    
 
     for c in skuCounter:
         if c not in "ABCDEFGHIJKLMNOPQRSTUVWXYZ": return -1
@@ -39,7 +39,8 @@ def checkout(skus):
     free_qs = skuCounter["R"] // 3
 
     # Check the Qs
-    price += calculate_single_money_off_deal(30, skuCounter["Q"] - free_qs, 3, 80)
+    if skuCounter["Q"] - free_qs > 0:
+        price += calculate_single_money_off_deal(30, skuCounter["Q"] - free_qs, 3, 80)
     
     # Check the Ps
     price += calculate_single_money_off_deal(50, skuCounter["P"], 5, 200)
@@ -48,15 +49,13 @@ def checkout(skus):
     price += skuCounter["O"] * 10
 
     # Check the Ns
-    if __name__ == "__main__":
-        print("before:{}" .format(price))
     price += skuCounter["N"] * 40
     free_Ms = skuCounter["N"] // 3
-    if __name__ == "__main__":
-        print("after: {}".format(price))
 
     # Check the Ms
-    price += (skuCounter["M"] - free_Ms) * 15
+    if skuCounter["M"]-free_Ms > 0:
+        price += (skuCounter["M"]-free_Ms) * 15
+    
 
     # Check the Ls
     price += skuCounter["L"] * 90
@@ -90,7 +89,8 @@ def checkout(skus):
     price += skuCounter["C"]*20
 
     # Check the Bs
-    price += calculate_single_money_off_deal(30, skuCounter["B"]-free_bs, 2, 45)
+    if skuCounter["B"]-free_bs > 0:
+        price += calculate_single_money_off_deal(30, skuCounter["B"]-free_bs, 2, 45)
 
     # Check the As
     price += calculate_double_money_off_deal(50, skuCounter["A"], 5, 200, 3, 130)
@@ -175,14 +175,17 @@ def test_checkout(skus):
     150
     >>> checkout("NNNNNN")
     240
-    >>> checkout("NNN")
+    >>> checkout("NNNM")
     120
+    >>> checkout("HHHHHH")
+    55
     """
     checkout(skus)
 
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
