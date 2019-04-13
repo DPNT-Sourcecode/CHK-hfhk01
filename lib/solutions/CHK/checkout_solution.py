@@ -62,7 +62,11 @@ def checkout(skus):
 
     # Check the Rs
     # Check the Qs
+    price += calculate_single_money_off_deal(30, skuCounter["Q"], 3, 80)
+    
     # Check the Ps
+    price += calculate_single_money_off_deal(50, skuCounter["P"], 5, 200)
+
     # Check the Os
     price += skuCounter["O"] * 10
 
@@ -73,7 +77,9 @@ def checkout(skus):
 
     # Check the Ls
     price += skuCounter["L"] * 90
+
     # Check the Ks
+    price += calculate_single_money_off_deal(80, skuCounter["K"], 2, 150)
 
     # Check the Js
     price += skuCounter["J"] * 60
@@ -103,7 +109,7 @@ def checkout(skus):
 
     # Check the Bs
     if "B" in skuCounter and skuCounter["B"] - free_bs > 0:
-        price += calculate_deal(30, skuCounter["B"]-free_bs, 2, 45)
+        price += calculate_single_money_off_deal(30, skuCounter["B"]-free_bs, 2, 45)
 
     # Check the As
     a_count = skuCounter["A"]
@@ -119,7 +125,7 @@ def checkout(skus):
             break
     return int(price)
 
-def calculate_deal(item_price, item_count, deal_count, deal_price):
+def calculate_single_money_off_deal(item_price, item_count, deal_count, deal_price):
     price = 0
     if not item_count <= 0:
         while item_count > 0:
@@ -141,4 +147,5 @@ def calculate_f(f_count):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
