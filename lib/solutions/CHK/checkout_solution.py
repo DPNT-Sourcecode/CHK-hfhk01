@@ -54,6 +54,7 @@ def checkout(skus):
 
     # Check the Vs
     # Check the Us
+    price += calculate_get_one_free_deal(40, skuCounter["U"], 3)
     # Check the Ts
     price += skuCounter["T"] * 20
 
@@ -94,7 +95,7 @@ def checkout(skus):
     price += skuCounter["G"] * 20
 
     # Check the Fs
-    price += calculate_get_one_free_deal(10, skuCounter["F"], 2) #calculate_f(skuCounter["F"])
+    price += calculate_get_one_free_deal(10, skuCounter["F"], 3) #calculate_f(skuCounter["F"])
     
 
     # Check the Es
@@ -152,6 +153,7 @@ def calculate_f(f_count):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
