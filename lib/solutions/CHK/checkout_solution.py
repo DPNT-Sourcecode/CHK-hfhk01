@@ -77,9 +77,11 @@ def checkout(skus):
     price += skuCounter["O"] * 10
 
     # Check the Ns
+    price = skuCounter["N"] * 40
+    free_Ms = skuCounter["N"] // 3
 
     # Check the Ms
-    price += skuCounter["M"] * 15
+    price += (skuCounter["M"] - free_Ms) * 15
 
     # Check the Ls
     price += skuCounter["L"] * 90
@@ -94,14 +96,13 @@ def checkout(skus):
     price += skuCounter["I"] * 35
 
     # Check the Hs
-
+    price += calculate_double_money_off_deal(10, skuCounter["H"], 10, 80, 5, 45)
 
     # Check the Gs
     price += skuCounter["G"] * 20
 
     # Check the Fs
-    price += calculate_get_one_free_deal(10, skuCounter["F"], 3) #calculate_f(skuCounter["F"])
-    
+    price += calculate_get_one_free_deal(10, skuCounter["F"], 3) 
 
     # Check the Es
     price += skuCounter["E"] * 40
@@ -156,16 +157,11 @@ def calculate_single_money_off_deal(item_price, item_count, deal_count, deal_pri
                 break
     return int(price)
 
-def calculate_f(f_count):
-    price = 0
-    free_fs = f_count // 3
-    f_count_minus_free = f_count - free_fs
-    price += f_count_minus_free * 10
-    return int(price)
 
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
