@@ -31,21 +31,14 @@ def checkout(skus):
     for skuKey in skuCounter:
         # If we do E first it makes calculating free Bs easier
         if skuKey == "E":
-            price += skuCounter[skuKey]*40
-            if skuCounter["E"] >= 2 and "E" in skuCounter:
-                new_b_count = skuCounter["B"] - skuCounter["E"] // 2
-                # Can't have less than 0 Bs
-                if new_b_count >= 0:
-                    free_bs = new_b_count
-                else:
-                    free_bs = 0
+            price += skuCounter["E"]*40
+            free_bs = skuCounter["E"] // 2
         elif skuKey == "D":
             price += skuCounter[skuKey]*15
         elif skuKey == "C":
             price += skuCounter[skuKey]*20
         elif skuKey == "B":
-            b_count = skuCounter[skuKey] - free_bs
-            price(b_count)
+            b_count = skuCounter["B"] - free_bs
             if b_count <= 0:
                 break
             remainder = b_count % 2
@@ -70,6 +63,7 @@ def checkout(skus):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
