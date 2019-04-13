@@ -48,8 +48,12 @@ def checkout(skus):
     price += skuCounter["O"] * 10
 
     # Check the Ns
+    if __name__ == "__main__":
+        print("before:{}" .format(price))
     price += skuCounter["N"] * 40
     free_Ms = skuCounter["N"] // 3
+    if __name__ == "__main__":
+        print("after: {}".format(price))
 
     # Check the Ms
     price += (skuCounter["M"] - free_Ms) * 15
@@ -169,8 +173,8 @@ def test_checkout(skus):
     220
     >>> checkout("RRRQ")
     150
-    >>> checkout("NN")
-    80
+    >>> checkout("NNNNNN")
+    240
     >>> checkout("NNN")
     120
     """
@@ -179,6 +183,7 @@ def test_checkout(skus):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
