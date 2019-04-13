@@ -41,9 +41,8 @@ def checkout(skus):
         if c not in "ABCDEFGHIJKLMNOPQRSTUVWXYZ": return -1
 
     # Check the Fs
-    free_fs = skuCounter["F"] // 3
-    f_count = skuCounter["F"] - free_fs
-    price += f_count * 10
+    price += calculate_f(price, skuCounter["F"])
+    
 
     # Check the Es
     price += skuCounter["E"] * 40
@@ -76,7 +75,14 @@ def checkout(skus):
             break
     return int(price)
 
+def calculate_f(price, f_count):
+    free_fs = f_count // 3
+    f_count_minus_free = f_count - free_fs
+    price += f_count_minus_free * 10
+    return int(price)
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
