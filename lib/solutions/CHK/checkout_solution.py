@@ -112,6 +112,7 @@ def checkout(skus):
     price += calculate_single_money_off_deal(30, skuCounter["B"]-free_bs, 2, 45)
 
     # Check the As
+    price += calculate_double_money_off_deal(50, skuCounter["A"], 3, 130, 5, 200)
     a_count = skuCounter["A"]
     for count in range(a_count):
         if a_count >= 5:
@@ -129,6 +130,22 @@ def calculate_get_one_free_deal(item_price, item_count, free_point):
     free = item_count // free_point
     count_minus_free = item_count - free
     price = count_minus_free * 10
+    return int(price)
+
+def calculate_double_money_off_deal(item_price, item_count, 
+    deal_count1, deal_price1, deal_count2, deal_price2):
+    price = 0
+    if not item_count <= 0:
+        while item_count > 0:
+            if item_count >= deal_count1:
+                price += deal_price1
+                item_count -= deal_count1
+            elif item_count >= deal_count2:
+                price += deal_price2
+                item_count -= deal_count2
+            else:
+                price += item_count * item_price
+                break
     return int(price)
 
 def calculate_single_money_off_deal(item_price, item_count, deal_count, deal_price):
@@ -153,6 +170,7 @@ def calculate_f(f_count):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
