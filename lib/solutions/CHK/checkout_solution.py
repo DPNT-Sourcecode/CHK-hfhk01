@@ -3,6 +3,10 @@ from collections import Counter
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
+    """
+    >>> checkout("BB")
+    45
+    """
     skuCounter = Counter(skus)
     price = 0
     for item in skuCounter:
@@ -17,11 +21,10 @@ def checkout(skus):
             if skuCounter[skuKey] % 2 == 0:
                 price += (skuCounter[skuKey]/2) * 45
             else:
-                price += (skuCounter[skuKey]-1/2) * 130
-                price += 50
-            
+                price += (skuCounter[skuKey]-1/2) * 45
+                price += 30
+    return int(price)
 
-
-
-
-
+if __name__ == "__main__":
+    import doctest
+    doctest.testmod()
