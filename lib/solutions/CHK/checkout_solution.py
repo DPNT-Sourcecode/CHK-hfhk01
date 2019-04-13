@@ -40,6 +40,9 @@ def checkout(skus):
     for c in skuCounter:
         if c not in "ABCDEFGHIJKLMNOPQRSTUVWXYZ": return -1
 
+    # Check the Gs
+    price += skuCounter["G"] * 20
+
     # Check the Fs
     price += calculate_f(price, skuCounter["F"])
     
@@ -84,5 +87,6 @@ def calculate_f(price, f_count):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
