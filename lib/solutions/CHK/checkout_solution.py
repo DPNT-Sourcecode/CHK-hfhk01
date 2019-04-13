@@ -169,12 +169,17 @@ def test_checkout(skus):
     220
     >>> checkout("RRRQ")
     150
+    >>> checkout("NN")
+    80
+    >>> checkout("NNN")
+    120
     """
     checkout(skus)
 
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
