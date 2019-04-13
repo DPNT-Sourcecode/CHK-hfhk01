@@ -27,7 +27,12 @@ def checkout(skus):
     for skuKey in skuCounter:
         if skuKey == "E":
             price += skuCounter[skuKey]*40
-            free_b = skuCounter["B"] - 
+            new_b_count = skuCounter["B"] - skuCounter["E"] // 2
+            # Can't have -1 Bs
+            if new_b_count >= 0:
+                skuCounter["B"] = new_b_count
+            else:
+                skuCounter["B"] = 0
         if skuKey == "D":
             price += skuCounter[skuKey]*15
         elif skuKey == "C":
@@ -45,6 +50,7 @@ def checkout(skus):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
