@@ -36,7 +36,10 @@ def checkout(skus):
     free_bs = 0
 
     for c in skuCounter:
-        if c not in "ABCDE": return -1
+        if c not in "ABCDEF": return -1
+
+    # Check the Fs
+    
 
     # Check the Es
     price += skuCounter["E"] * 40
@@ -72,5 +75,6 @@ def checkout(skus):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
