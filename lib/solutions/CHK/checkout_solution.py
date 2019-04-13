@@ -16,13 +16,18 @@ def checkout(skus):
     50
     >>> checkout("AAAA")
     180
+    >>> checkout("EEB")
+    80
     """
     skuCounter = Counter(skus)
     price = 0
     for item in skuCounter:
-        if item not in ["A", "B", "C", "D"]:
+        if item not in ["A", "B", "C", "D", "E"]:
             return -1
     for skuKey in skuCounter:
+        if skuKey == "E":
+            price += skuCounter[skuKey]*40
+            free_b = skuCounter["B"] - 
         if skuKey == "D":
             price += skuCounter[skuKey]*15
         elif skuKey == "C":
@@ -40,6 +45,7 @@ def checkout(skus):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
