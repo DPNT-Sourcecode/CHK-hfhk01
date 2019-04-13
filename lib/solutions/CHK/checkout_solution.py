@@ -4,6 +4,8 @@ from collections import Counter
 # skus = unicode string
 def checkout(skus):
     """
+    >>> checkout("-AA")
+    -1
     >>> checkout("BB")
     45
     >>> checkout("B")
@@ -38,5 +40,6 @@ def checkout(skus):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
