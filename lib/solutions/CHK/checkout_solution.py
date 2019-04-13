@@ -30,8 +30,8 @@ def checkout(skus):
     380
     >>> checkout("EEB")
     80
-    >>> checkout("FFFFFF")
-    40
+    >>> checkout("FFFF")
+    30
     >>> checkout("UUUU")
     120
     """
@@ -164,3 +164,4 @@ def calculate_single_money_off_deal(item_price, item_count, deal_count, deal_pri
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
