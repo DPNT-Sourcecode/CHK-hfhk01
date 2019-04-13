@@ -102,11 +102,7 @@ def checkout(skus):
     price += skuCounter["C"]*20
 
     # Check the Bs
-    b_count = skuCounter["B"] - free_bs
-    if not b_count <= 0:
-        remainder = b_count % 2
-        price += 30 * remainder
-        price += 45 * ((b_count - remainder) / 2)
+    price += calculate_deal(price, 30, skuCounter["B"]-free_bs, 2, 45)
 
     # Check the As
     a_count = skuCounter["A"]
@@ -122,18 +118,15 @@ def checkout(skus):
             break
     return int(price)
 
-def calculate_deal(price, item_count, deal_num, deal_price):
+def calculate_deal(price, item_price, item_count, deal_count, deal_price):
     if not item_count <= 0:
-        for count in range(a_count):
-        if a_count >= deal_count:
-            price += 200
-            a_count -= 5
-        elif a_count >= 3:
-            price += 130
-            a_count -= 3
-        else:
-            price += a_count * 50
-            break
+        for count in range(item_count):
+            if item_count >= deal_count:
+                price += deal_price
+                item_count -= deal_count
+            else:
+                price += item_count * item_price
+                break
     return int(price)
 
 def calculate_f(price, f_count):
@@ -145,6 +138,7 @@ def calculate_f(price, f_count):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
