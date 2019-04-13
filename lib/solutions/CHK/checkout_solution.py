@@ -6,6 +6,12 @@ def checkout(skus):
     """
     >>> checkout("BB")
     45
+    >>> checkout("B")
+    30
+    >>> checkout("BBB")
+    120
+    >>> checkout("A")
+    50
     """
     skuCounter = Counter(skus)
     price = 0
@@ -21,10 +27,12 @@ def checkout(skus):
             if skuCounter[skuKey] % 2 == 0:
                 price += (skuCounter[skuKey]/2) * 45
             else:
-                price += (skuCounter[skuKey]-1/2) * 45
+                b_count = skuCounter[skuKey] -1 
+                price += (b_count/2) * 45
                 price += 30
     return int(price)
 
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
