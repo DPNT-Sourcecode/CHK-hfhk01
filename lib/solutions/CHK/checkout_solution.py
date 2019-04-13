@@ -56,7 +56,7 @@ def checkout(skus):
     # Check the Us
     # Check the Ts
     price += skuCounter["T"] * 20
-    
+
     # Check the Ss
     price += skuCounter["S"] * 30
 
@@ -122,6 +122,20 @@ def checkout(skus):
             break
     return int(price)
 
+def calculate_deal(price, item_count, deal_num, deal_price):
+    if not item_count <= 0:
+        for count in range(a_count):
+        if a_count >= deal_count:
+            price += 200
+            a_count -= 5
+        elif a_count >= 3:
+            price += 130
+            a_count -= 3
+        else:
+            price += a_count * 50
+            break
+    return int(price)
+
 def calculate_f(price, f_count):
     free_fs = f_count // 3
     f_count_minus_free = f_count - free_fs
@@ -131,6 +145,7 @@ def calculate_f(price, f_count):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
