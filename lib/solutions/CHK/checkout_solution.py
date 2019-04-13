@@ -4,8 +4,8 @@ from collections import Counter
 # skus = unicode string
 def checkout(skus):
     """
-    >>> checkout("E")
-    40
+    >>> checkout("EE")
+    80
     >>> checkout("-AA")
     -1
     >>> checkout("BB")
@@ -27,25 +27,27 @@ def checkout(skus):
     """
     skuCounter = Counter(skus)
     price = 0
+    free_bs = 0
     for skuKey in skuCounter:
         # If we do E first it makes calculating free Bs easier
         if skuKey == "E":
             price += skuCounter[skuKey]*40
-            if skuCounter[skuKey] >= 2:
+            if skuCounter["E"] >= 2 and "E" in skuCounter:
                 new_b_count = skuCounter["B"] - skuCounter["E"] // 2
                 # Can't have less than 0 Bs
                 if new_b_count >= 0:
-                    skuCounter["B"] = new_b_count
+                    free_bs = new_b_count
                 else:
-                    skuCounter["B"] = 0
+                    free_bs = 0
         elif skuKey == "D":
             price += skuCounter[skuKey]*15
         elif skuKey == "C":
             price += skuCounter[skuKey]*20
         elif skuKey == "B":
-            remainder = skuCounter[skuKey] % 2
+            b_count = skuCounter[skuKey] - free_bs
+            remainder = b_count % 2
             price += 30 * remainder
-            price += 45 * ((skuCounter[skuKey] - remainder) / 2)
+            price += 45 * ((b_count - remainder) / 2)
         elif skuKey == "A":
             a_count = skuCounter[skuKey]
             for count in range(a_count):
@@ -65,6 +67,7 @@ def checkout(skus):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
