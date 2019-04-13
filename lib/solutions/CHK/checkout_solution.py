@@ -38,7 +38,7 @@ def checkout(skus):
     free_bs = 0
 
     for c in skuCounter:
-        if c not in "ABCDEF": return -1
+        if c not in "ABCDEFGHIJKLMNOPQRSTUVWXYZ": return -1
 
     # Check the Fs
     free_fs = skuCounter["F"] // 3
@@ -79,3 +79,4 @@ def checkout(skus):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
