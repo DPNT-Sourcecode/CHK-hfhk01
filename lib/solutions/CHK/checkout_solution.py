@@ -120,7 +120,7 @@ def checkout(skus):
 
 def calculate_deal(price, item_price, item_count, deal_count, deal_price):
     if not item_count <= 0:
-        for count in range(item_count):
+        while item_count > 0:
             if item_count >= deal_count:
                 price += deal_price
                 item_count -= deal_count
@@ -138,6 +138,7 @@ def calculate_f(price, f_count):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
