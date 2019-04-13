@@ -34,69 +34,43 @@ def checkout(skus):
     skuCounter = Counter(skus)
     price = 0
     free_bs = 0
-        # If we do E first it makes calculating free Bs easier
-    if skuKey == "E":
-        price += skuCounter["E"] * 40
-        free_bs = skuCounter["E"] // 2
-    elif skuKey == "D":
-        price += skuCounter[skuKey]*15
-    elif skuKey == "C":
-        price += skuCounter[skuKey]*20
-    elif skuKey == "B":
-        b_count = skuCounter["B"] - free_bs
-        if b_count <= 0:
-            break
+
+    for c in skuCounter:
+        if c not in "ABCDE": return -1
+
+    # Check the Es
+    price += skuCounter["E"] * 40
+    free_bs = skuCounter["E"] // 2
+
+    # Check the Ds
+    price += skuCounter["D"]*15
+
+    # Check the Cs
+    price += skuCounter["C"]*20
+
+    # Check the Bs
+    b_count = skuCounter["B"] - free_bs
+    if not b_count <= 0:
         remainder = b_count % 2
         price += 30 * remainder
         price += 45 * ((b_count - remainder) / 2)
-    elif skuKey == "A":
-        a_count = skuCounter[skuKey]
-        for count in range(a_count):
-            if a_count >= 5:
-                price += 200
-                a_count -= 5
-            elif a_count >= 3:
-                price += 130
-                a_count -= 3
-            else:
-                price += a_count * 50
-                break
-    else:
-        return -1
 
-    # for skuKey in skuCounter:
-    #     # If we do E first it makes calculating free Bs easier
-    #     if skuKey == "E":
-    #         price += skuCounter["E"] * 40
-    #         free_bs = skuCounter["E"] // 2
-    #     elif skuKey == "D":
-    #         price += skuCounter[skuKey]*15
-    #     elif skuKey == "C":
-    #         price += skuCounter[skuKey]*20
-    #     elif skuKey == "B":
-    #         b_count = skuCounter["B"] - free_bs
-    #         if b_count <= 0:
-    #             break
-    #         remainder = b_count % 2
-    #         price += 30 * remainder
-    #         price += 45 * ((b_count - remainder) / 2)
-    #     elif skuKey == "A":
-    #         a_count = skuCounter[skuKey]
-    #         for count in range(a_count):
-    #             if a_count >= 5:
-    #                 price += 200
-    #                 a_count -= 5
-    #             elif a_count >= 3:
-    #                 price += 130
-    #                 a_count -= 3
-    #             else:
-    #                 price += a_count * 50
-    #                 break
-    #     else:
-    #         return -1
+    # Check the As
+    a_count = skuCounter["A"]
+    for count in range(a_count):
+        if a_count >= 5:
+            price += 200
+            a_count -= 5
+        elif a_count >= 3:
+            price += 130
+            a_count -= 3
+        else:
+            price += a_count * 50
+            break
     return int(price)
 
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
