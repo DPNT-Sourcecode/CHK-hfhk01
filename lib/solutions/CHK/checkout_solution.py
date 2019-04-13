@@ -18,6 +18,8 @@ def checkout(skus):
     200
     >>> checkout("AAAAAAAA")
     330
+    >>> checkout("AAAAAAAAA")
+    380
     >>> checkout("EEB")
     80
     """
@@ -51,11 +53,13 @@ def checkout(skus):
                     a_count -= 5
                 elif a_count >= 3:
                     price += 130
-                    a_count - 3
+                    a_count -= 3
                 else:
                     price += a_count * 50
+                    break
     return int(price)
 
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
