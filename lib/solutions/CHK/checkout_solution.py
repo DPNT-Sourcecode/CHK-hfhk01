@@ -145,12 +145,8 @@ def test_checkout(skus):
     -1
     >>> checkout("BB")
     45
-    >>> checkout("B")
-    30
     >>> checkout("BBB")
     75
-    >>> checkout("A")
-    50
     >>> checkout("AAAAA")
     200
     >>> checkout("AAAAAAAA")
@@ -163,14 +159,23 @@ def test_checkout(skus):
     30
     >>> checkout("UUUU")
     120
-    >>> checkout("ZZ")
-    100
+    >>> checkout("VV")
+    90
+    >>> checkout("VVV")
+    130
+    >>> checkout("VVVV")
+    180
+    >>> checkout("VVVVV")
+    220
+    >>> checkout("RRRQ")
+    150
     """
     checkout(skus)
 
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
