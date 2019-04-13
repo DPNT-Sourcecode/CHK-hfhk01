@@ -3,38 +3,6 @@ from collections import Counter
 # noinspection PyUnusedLocal
 # skus = unicode string
 def checkout(skus):
-    """
-    >>> checkout("BEBEEE")
-    160
-    >>> checkout("ABCDEABCDE")
-    280
-    >>> checkout("ABCDECBAABCABBAAAEEAA")
-    665
-    >>> checkout("EE")
-    80
-    >>> checkout("-AA")
-    -1
-    >>> checkout("BB")
-    45
-    >>> checkout("B")
-    30
-    >>> checkout("BBB")
-    75
-    >>> checkout("A")
-    50
-    >>> checkout("AAAAA")
-    200
-    >>> checkout("AAAAAAAA")
-    330
-    >>> checkout("AAAAAAAAA")
-    380
-    >>> checkout("EEB")
-    80
-    >>> checkout("FFFF")
-    30
-    >>> checkout("UUUU")
-    120
-    """
     skuCounter = Counter(skus)
     price = 0
     free_bs = 0
@@ -59,6 +27,8 @@ def checkout(skus):
 
     # Check the Us
     price += calculate_get_one_free_deal(40, skuCounter["U"], 4)
+    if "U" in skuCounter:
+        print(skuCounter["U"])
 
     # Check the Ts
     price += skuCounter["T"] * 20
@@ -132,6 +102,7 @@ def calculate_get_one_free_deal(item_price, item_count, free_point):
     price = count_minus_free * item_price
     return int(price)
 
+
 def calculate_double_money_off_deal(item_price, item_count, 
     deal_count1, deal_price1, deal_count2, deal_price2):
     price = 0
@@ -148,6 +119,7 @@ def calculate_double_money_off_deal(item_price, item_count,
                 break
     return int(price)
 
+
 def calculate_single_money_off_deal(item_price, item_count, deal_count, deal_price):
     price = 0
     if not item_count <= 0:
@@ -161,7 +133,43 @@ def calculate_single_money_off_deal(item_price, item_count, deal_count, deal_pri
     return int(price)
 
 
+def test_checkout(skus):
+    """
+    >>> checkout("BEBEEE")
+    160
+    >>> checkout("ABCDEABCDE")
+    280
+    >>> checkout("ABCDECBAABCABBAAAEEAA")
+    665
+    >>> checkout("EE")
+    80
+    >>> checkout("-AA")
+    -1
+    >>> checkout("BB")
+    45
+    >>> checkout("B")
+    30
+    >>> checkout("BBB")
+    75
+    >>> checkout("A")
+    50
+    >>> checkout("AAAAA")
+    200
+    >>> checkout("AAAAAAAA")
+    330
+    >>> checkout("AAAAAAAAA")
+    380
+    >>> checkout("EEB")
+    80
+    >>> checkout("FFFF")
+    30
+    >>> checkout("UUUU")
+    120
+    """
+    checkout(skus)
+
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
