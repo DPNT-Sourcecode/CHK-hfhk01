@@ -88,7 +88,7 @@ def checkout(skus):
     price += skuCounter["G"] * 20
 
     # Check the Fs
-    price += calculate_f(price, skuCounter["F"])
+    price += calculate_f(skuCounter["F"])
     
 
     # Check the Es
@@ -103,7 +103,7 @@ def checkout(skus):
 
     # Check the Bs
     if "B" in skuCounter and skuCounter["B"] - free_bs > 0:
-        price += calculate_deal(price, 30, skuCounter["B"]-free_bs, 2, 45)
+        price += calculate_deal(30, skuCounter["B"]-free_bs, 2, 45)
 
     # Check the As
     a_count = skuCounter["A"]
@@ -119,7 +119,8 @@ def checkout(skus):
             break
     return int(price)
 
-def calculate_deal(price, item_price, item_count, deal_count, deal_price):
+def calculate_deal(item_price, item_count, deal_count, deal_price):
+    price = 0
     if not item_count <= 0:
         while item_count > 0:
             if item_count >= deal_count:
@@ -130,7 +131,8 @@ def calculate_deal(price, item_price, item_count, deal_count, deal_price):
                 break
     return int(price)
 
-def calculate_f(price, f_count):
+def calculate_f(f_count):
+    price = 0
     free_fs = f_count // 3
     f_count_minus_free = f_count - free_fs
     price += f_count_minus_free * 10
@@ -139,3 +141,4 @@ def calculate_f(price, f_count):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
