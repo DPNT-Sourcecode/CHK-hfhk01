@@ -32,6 +32,8 @@ def checkout(skus):
     80
     >>> checkout("FFFFFF")
     40
+    >>> checkout("UUU")
+    120
     """
     skuCounter = Counter(skus)
     price = 0
@@ -56,7 +58,8 @@ def checkout(skus):
     price += calculate_double_money_off_deal(50, skuCounter["V"], 3, 130, 2, 90)
 
     # Check the Us
-    price += calculate_get_one_free_deal(40, skuCounter["U"], 3)
+    price += calculate_get_one_free_deal(40, skuCounter["U"], 4)
+
     # Check the Ts
     price += skuCounter["T"] * 20
 
@@ -161,6 +164,7 @@ def calculate_single_money_off_deal(item_price, item_count, deal_count, deal_pri
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
