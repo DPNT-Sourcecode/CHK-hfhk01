@@ -4,6 +4,12 @@ from collections import Counter
 # skus = unicode string
 def checkout(skus):
     """
+    >>> checkout("BEBEEE")
+    160
+    >>> checkout("ABCDEABCDE")
+    280
+    >>> checkout("ABCDECBAABCABBAAAEEAA")
+    665
     >>> checkout("EE")
     80
     >>> checkout("-AA")
@@ -31,7 +37,7 @@ def checkout(skus):
     for skuKey in skuCounter:
         # If we do E first it makes calculating free Bs easier
         if skuKey == "E":
-            price += skuCounter["E"]*40
+            price += skuCounter["E"] * 40
             free_bs = skuCounter["E"] // 2
         elif skuKey == "D":
             price += skuCounter[skuKey]*15
@@ -63,10 +69,3 @@ def checkout(skus):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-
-
-
-
-
-
-
