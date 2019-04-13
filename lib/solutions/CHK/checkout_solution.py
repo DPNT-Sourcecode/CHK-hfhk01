@@ -61,7 +61,7 @@ def checkout(skus):
     price += skuCounter["L"] * 90
 
     # Check the Ks
-    price += calculate_single_money_off_deal(80, skuCounter["K"], 2, 150)
+    price += calculate_single_money_off_deal(70, skuCounter["K"], 2, 120)
 
     # Check the Js
     price += skuCounter["J"] * 60
@@ -185,10 +185,3 @@ def test_checkout(skus):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-
-
-
-
-
-
-
