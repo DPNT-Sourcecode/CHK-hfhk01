@@ -64,8 +64,11 @@ def checkout(skus):
     price += skuCounter["S"] * 30
 
     # Check the Rs
+    price += skuCounter["R"] * 50
+    free_qs = skuCounter["R"] // 3
+
     # Check the Qs
-    price += calculate_single_money_off_deal(30, skuCounter["Q"], 3, 80)
+    price += calculate_single_money_off_deal(30, skuCounter["Q"] - free_qs, 3, 80)
     
     # Check the Ps
     price += calculate_single_money_off_deal(50, skuCounter["P"], 5, 200)
@@ -118,6 +121,7 @@ def checkout(skus):
 
     return int(price)
 
+
 def calculate_get_one_free_deal(item_price, item_count, free_point):
     free = item_count // free_point
     count_minus_free = item_count - free
@@ -162,6 +166,7 @@ def calculate_f(f_count):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
