@@ -41,12 +41,22 @@ def checkout(skus):
         if c not in "ABCDEFGHIJKLMNOPQRSTUVWXYZ": return -1
 
     # Check the Zs
+    price += skuCounter["Z"] * 50
+
     # Check the Ys
+    price += skuCounter["Y"] * 10
+
     # Check the Xs
+    price += skuCounter["X"] * 90
+
     # Check the Ws
+    price += skuCounter["W"] * 20
+
     # Check the Vs
     # Check the Us
     # Check the Ts
+    price += skuCounter["T"] * 20
+    
     # Check the Ss
     price += skuCounter["S"] * 30
 
@@ -121,6 +131,7 @@ def calculate_f(price, f_count):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
