@@ -30,6 +30,8 @@ def checkout(skus):
     380
     >>> checkout("EEB")
     80
+    >>> checkout("FFF")
+    80
     """
     skuCounter = Counter(skus)
     price = 0
@@ -39,7 +41,9 @@ def checkout(skus):
         if c not in "ABCDEF": return -1
 
     # Check the Fs
-    
+    free_fs = skuCounter["F"] // 3
+    f_count = skuCounter["F"] - free_fs
+    price += f_count * 10
 
     # Check the Es
     price += skuCounter["E"] * 40
@@ -75,6 +79,7 @@ def checkout(skus):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
