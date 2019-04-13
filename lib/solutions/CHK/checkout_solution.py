@@ -30,8 +30,8 @@ def checkout(skus):
     380
     >>> checkout("EEB")
     80
-    >>> checkout("FFF")
-    80
+    >>> checkout("FFFFFF")
+    40
     """
     skuCounter = Counter(skus)
     price = 0
@@ -79,6 +79,7 @@ def checkout(skus):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
