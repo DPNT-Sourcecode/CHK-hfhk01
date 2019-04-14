@@ -4,8 +4,9 @@ from collections import Counter
 # skus = unicode string
 def checkout(skus):
     skuCounter = Counter(skus)
-    price = 0
     
+    # Performs side effects on the skuCounter :(
+    price = do_buy_any_deal(skuCounter)
 
     for c in skuCounter:
         if c not in "ABCDEFGHIJKLMNOPQRSTUVWXYZ": return -1
@@ -103,6 +104,15 @@ def checkout(skus):
     return int(price)
 
 
+def do_buy_any_deal(skuCounter: Counter):
+    count = 0
+    for c in "XTTYZ":
+        count += skuCounter[c]
+    value = (count // 3) * 45
+
+    return value
+
+
 def calculate_get_one_free_deal(item_price, item_count, free_point):
     free = item_count // free_point
     count_minus_free = item_count - free
@@ -190,3 +200,4 @@ def test_checkout(skus):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
