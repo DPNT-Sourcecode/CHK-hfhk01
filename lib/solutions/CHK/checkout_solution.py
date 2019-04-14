@@ -112,6 +112,12 @@ def reduce_counts(skuCounter, sku, count):
 
 
 def do_buy_any_deal(skuCounter: Counter):
+    """
+    >>> do_buy_any_deal(Counter({"X":3}))
+    45
+    >>> do_buy_any_deal(Counter({"X":3, "T":2}))
+    45
+    """
     deal_skus = "XTTYZ" # In ascending order of price
     count = 0
     for c in deal_skus:
@@ -213,6 +219,7 @@ def test_checkout(skus):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
