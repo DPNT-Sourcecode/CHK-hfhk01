@@ -38,7 +38,7 @@ def checkout(skus):
 
     # Check the Ss
     # New offer
-    price += skuCounter["S"] * 30
+    price += skuCounter["S"] * 20
 
     # Check the Rs
     price += skuCounter["R"] * 50
@@ -214,9 +214,16 @@ def test_checkout(skus):
     120
     >>> checkout("HHHHHH")
     55
+    >>> checkout("S")
+    20
+    >>> checkout("ABCDEFGHIJKLMNOPQRSTUVW")
+    795
+    >>> checkout("SSSZ")
+    65
     """
     checkout(skus)
 
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
