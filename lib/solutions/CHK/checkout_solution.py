@@ -104,11 +104,21 @@ def checkout(skus):
     return int(price)
 
 
+def reduce_counts(skuCounter, sku, count):
+    pass
+
+
 def do_buy_any_deal(skuCounter: Counter):
+    deal_skus = "XTTYZ" # In ascending order of price
     count = 0
-    for c in "XTTYZ":
+    for c in deal_skus:
         count += skuCounter[c]
     value = (count // 3) * 45
+
+    # Important to use floor division to remove remainders
+    amount_to_remove = (count // 3) * 3
+    for sku in deal_skus:
+
 
     return value
 
@@ -200,4 +210,5 @@ def test_checkout(skus):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
