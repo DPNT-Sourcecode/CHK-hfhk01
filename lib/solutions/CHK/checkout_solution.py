@@ -6,7 +6,7 @@ def checkout(skus):
     skuCounter = Counter(skus)
     
     # Performs side effects on the skuCounter :(
-    price = do_buy_any_deal(skuCounter)
+    price, skuCounter = do_buy_any_deal(skuCounter.copy())
 
     for c in skuCounter:
         if c not in "ABCDEFGHIJKLMNOPQRSTUVWXYZ": return -1
@@ -116,9 +116,9 @@ def do_buy_any_deal(skuCounter: Counter):
     >>> do_buy_any_deal(Counter({"X":3}))
     45
     >>> do_buy_any_deal(Counter({"X":3, "T":2}))
-    45
+    (45
     """
-    deal_skus = "XTTYZ" # In ascending order of price
+    deal_skus = "XTSYZ" # In ascending order of price
     count = 0
     for c in deal_skus:
         count += skuCounter[c]
@@ -128,8 +128,7 @@ def do_buy_any_deal(skuCounter: Counter):
     amount_to_remove = (count // 3) * 3
     for sku in deal_skus:
         amount_to_remove = reduce_counts(skuCounter, sku, amount_to_remove)
-
-    return value
+    return value, skuCounter
 
 
 def calculate_get_one_free_deal(item_price, item_count, free_point):
@@ -219,6 +218,7 @@ def test_checkout(skus):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
 
