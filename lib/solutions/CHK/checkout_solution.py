@@ -105,7 +105,10 @@ def checkout(skus):
 
 
 def reduce_counts(skuCounter, sku, count):
-    pass
+    while skuCounter[0] > 0 and count > 0:
+        skuCounter[sku] -= 1
+        count -= 1
+    return count
 
 
 def do_buy_any_deal(skuCounter: Counter):
@@ -118,7 +121,7 @@ def do_buy_any_deal(skuCounter: Counter):
     # Important to use floor division to remove remainders
     amount_to_remove = (count // 3) * 3
     for sku in deal_skus:
-
+        amount_to_remove = reduce_counts(skuCounter, sku, amount_to_remove)
 
     return value
 
@@ -210,5 +213,6 @@ def test_checkout(skus):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
+
 
 
