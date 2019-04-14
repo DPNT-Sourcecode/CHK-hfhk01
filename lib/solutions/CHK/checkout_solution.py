@@ -190,4 +190,3 @@ def test_checkout(skus):
 if __name__ == "__main__":
     import doctest
     doctest.testmod()
-
